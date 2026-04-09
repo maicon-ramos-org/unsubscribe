@@ -1,8 +1,8 @@
 export interface Env {
   HMAC_SECRET: string;
   MAUTIC_BASE_URL: string;
-  MAUTIC_CLIENT_ID: string;
-  MAUTIC_CLIENT_SECRET: string;
+  MAUTIC_USERNAME: string;
+  MAUTIC_PASSWORD: string;
 }
 
 function base64ToBytes(b64input: string): Uint8Array {

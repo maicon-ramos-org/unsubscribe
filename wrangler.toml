@@ -1,10 +1,10 @@
-name = "whatsapp-unsubscribe"
+name = "unsubscribe"
 main = "src/index.ts"
 compatibility_date = "2024-12-01"
 
 # Secrets are configured via: wrangler secret put <NAME>
 # Required secrets:
-#   HMAC_SECRET        - Shared secret with N8N for HMAC-SHA256 token signing
-#   MAUTIC_BASE_URL    - Mautic instance URL (e.g. https://mautic.example.com)
-#   MAUTIC_CLIENT_ID   - Mautic OAuth2 client ID
-#   MAUTIC_CLIENT_SECRET - Mautic OAuth2 client secret
+#   HMAC_SECRET      - Shared secret with N8N for HMAC-SHA256 token signing
+#   MAUTIC_BASE_URL  - Mautic instance URL (e.g. https://mautic.example.com)
+#   MAUTIC_USERNAME  - Mautic user with API access
+#   MAUTIC_PASSWORD  - Mautic user password
