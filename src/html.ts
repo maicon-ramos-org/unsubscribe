@@ -60,6 +60,13 @@ function layout(title: string, body: string): string {
     .btn-danger:hover {
       background: #c53030;
     }
+    .btn-secondary {
+      background: #e2e8f0;
+      color: #4a5568;
+    }
+    .btn-secondary:hover {
+      background: #cbd5e0;
+    }
     .success-icon { color: #38a169; }
     .error-icon { color: #e53e3e; }
   </style>
@@ -87,13 +94,29 @@ export function renderUnsubscribePage(token: string): string {
   );
 }
 
-export function renderSuccessPage(): string {
+export function renderSuccessPage(token: string): string {
+  const safeToken = token.replace(/[^a-zA-Z0-9._\-=]/g, '');
   return layout(
     'Inscricao cancelada',
     `
     <div class="icon success-icon">&#10003;</div>
     <h1>Inscricao cancelada</h1>
-    <p>Voce nao recebera mais nossas mensagens. Caso mude de ideia, entre em contato conosco.</p>
+    <p>Voce nao recebera mais nossas mensagens.</p>
+    <p style="font-size:14px; color:#888;">Clicou sem querer? Clique abaixo para voltar a receber.</p>
+    <form method="POST" action="/?token=${safeToken}&action=resubscribe">
+      <button type="submit" class="btn btn-secondary">Quero me reinscrever</button>
+    </form>
+    `,
+  );
+}
+
+export function renderResubscribedPage(): string {
+  return layout(
+    'Reinscricao confirmada',
+    `
+    <div class="icon success-icon">&#10003;</div>
+    <h1>Reinscricao confirmada</h1>
+    <p>Voce voltara a receber nossas mensagens.</p>
     `,
   );
 }

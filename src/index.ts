@@ -1,9 +1,10 @@
 import type { Env } from './token';
 import { verifyAndExtract } from './token';
-import { addToDnc } from './mautic';
+import { addToDnc, removeFromDnc } from './mautic';
 import {
   renderUnsubscribePage,
   renderSuccessPage,
+  renderResubscribedPage,
   renderErrorPage,
 } from './html';
 
@@ -40,9 +41,22 @@ export default {
     }
 
     if (request.method === 'POST') {
+      const action = url.searchParams.get('action');
+
+      if (action === 'resubscribe') {
+        const result = await removeFromDnc(contactId, env);
+        if (result.success) {
+          return htmlResponse(renderResubscribedPage());
+        }
+        return htmlResponse(
+          renderErrorPage('Ocorreu um erro ao processar sua solicitacao. Por favor, tente novamente mais tarde.'),
+          500,
+        );
+      }
+
       const result = await addToDnc(contactId, env);
       if (result.success) {
-        return htmlResponse(renderSuccessPage());
+        return htmlResponse(renderSuccessPage(token));
       }
       return htmlResponse(
         renderErrorPage('Ocorreu um erro ao processar sua solicitacao. Por favor, tente novamente mais tarde.'),
