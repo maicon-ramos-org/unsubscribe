@@ -1,4 +1,4 @@
-name = "whatsapp-unsubscribe"
+name = "unsubscribe"
 main = "src/index.ts"
 compatibility_date = "2024-12-01"
 
