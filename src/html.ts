@@ -82,13 +82,13 @@ function layout(title: string, body: string): string {
 export function renderUnsubscribePage(token: string): string {
   const safeToken = token.replace(/[^a-zA-Z0-9._\-]/g, '');
   return layout(
-    'Cancelar inscricao',
+    'Cancelar inscrição',
     `
-    <div class="icon">📩</div>
-    <h1>Cancelar inscricao</h1>
+    <div class="icon">\u{1F4E9}</div>
+    <h1>Cancelar inscrição</h1>
     <p>Deseja deixar de receber nossas mensagens por WhatsApp?</p>
     <form method="POST" action="/?token=${safeToken}">
-      <button type="submit" class="btn btn-danger">Sim, cancelar inscricao</button>
+      <button type="submit" class="btn btn-danger">Sim, cancelar inscrição</button>
     </form>
     `,
   );
@@ -97,11 +97,11 @@ export function renderUnsubscribePage(token: string): string {
 export function renderSuccessPage(token: string): string {
   const safeToken = token.replace(/[^a-zA-Z0-9._\-=]/g, '');
   return layout(
-    'Inscricao cancelada',
+    'Inscrição cancelada',
     `
     <div class="icon success-icon">&#10003;</div>
-    <h1>Inscricao cancelada</h1>
-    <p>Voce nao recebera mais nossas mensagens.</p>
+    <h1>Inscrição cancelada</h1>
+    <p>Você não receberá mais nossas mensagens.</p>
     <p style="font-size:14px; color:#888;">Clicou sem querer? Clique abaixo para voltar a receber.</p>
     <form method="POST" action="/?token=${safeToken}&action=resubscribe">
       <button type="submit" class="btn btn-secondary">Quero me reinscrever</button>
@@ -112,11 +112,11 @@ export function renderSuccessPage(token: string): string {
 
 export function renderResubscribedPage(): string {
   return layout(
-    'Reinscricao confirmada',
+    'Reinscrição confirmada',
     `
     <div class="icon success-icon">&#10003;</div>
-    <h1>Reinscricao confirmada</h1>
-    <p>Voce voltara a receber nossas mensagens.</p>
+    <h1>Reinscrição confirmada</h1>
+    <p>Você voltará a receber nossas mensagens.</p>
     `,
   );
 }
@@ -127,7 +127,7 @@ export function renderErrorPage(message?: string): string {
     `
     <div class="icon error-icon">&#10007;</div>
     <h1>Algo deu errado</h1>
-    <p>${message || 'Este link e invalido ou expirou. Por favor, entre em contato conosco para mais informacoes.'}</p>
+    <p>${message || 'Este link é inválido ou expirou. Por favor, entre em contato conosco para mais informações.'}</p>
     `,
   );
 }

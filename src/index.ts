@@ -23,7 +23,7 @@ export default {
     const url = new URL(request.url);
 
     if (url.pathname !== '/') {
-      return htmlResponse(renderErrorPage('Pagina nao encontrada.'), 404);
+      return htmlResponse(renderErrorPage('Página não encontrada.'), 404);
     }
 
     const token = url.searchParams.get('token');
@@ -49,7 +49,7 @@ export default {
           return htmlResponse(renderResubscribedPage());
         }
         return htmlResponse(
-          renderErrorPage('Ocorreu um erro ao processar sua solicitacao. Por favor, tente novamente mais tarde.'),
+          renderErrorPage('Ocorreu um erro ao processar sua solicitação. Por favor, tente novamente mais tarde.'),
           500,
         );
       }
@@ -59,7 +59,7 @@ export default {
         return htmlResponse(renderSuccessPage(token));
       }
       return htmlResponse(
-        renderErrorPage('Ocorreu um erro ao processar sua solicitacao. Por favor, tente novamente mais tarde.'),
+        renderErrorPage('Ocorreu um erro ao processar sua solicitação. Por favor, tente novamente mais tarde.'),
         500,
       );
     }
