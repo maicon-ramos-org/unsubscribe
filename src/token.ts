@@ -5,8 +5,9 @@ export interface Env {
   MAUTIC_CLIENT_SECRET: string;
 }
 
-function base64urlToBytes(b64url: string): Uint8Array {
-  const b64 = b64url.replace(/-/g, '+').replace(/_/g, '/');
+function base64ToBytes(b64input: string): Uint8Array {
+  // Accept both standard base64 (with = padding, +, /) and base64url (-, _)
+  const b64 = b64input.replace(/-/g, '+').replace(/_/g, '/');
   const padded = b64 + '='.repeat((4 - (b64.length % 4)) % 4);
   const binary = atob(padded);
   const bytes = new Uint8Array(binary.length);
@@ -43,7 +44,7 @@ export async function verifyAndExtract(
 
   let contactId: string;
   try {
-    const decoded = base64urlToBytes(payloadB64);
+    const decoded = base64ToBytes(payloadB64);
     contactId = new TextDecoder().decode(decoded);
   } catch {
     return null;
